@@ -9,8 +9,7 @@ class Add extends Component {
         super(props)
         this.state = {
             text: '',
-            complete: false,
-            editMode: false,
+            complete: false
         }
     }
 

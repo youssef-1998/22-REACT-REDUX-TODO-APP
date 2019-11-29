@@ -23,7 +23,7 @@ const Reducer = (state = initState, action) => {
                 todos: state.todos.map(el => el.id === action.payload.id ? action.payload : el )
             }
         case COMPLETE:
-            return state;    
+            return {...state , todos : state.todos.map(el => el.id === action.payload ? {...el, complete: !el.complete} : el)};    
         default:
             return state;
     }

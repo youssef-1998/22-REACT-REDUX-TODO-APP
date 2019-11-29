@@ -25,9 +25,9 @@ export const renommer = (todo) => {
 }
 
 
-export const complete = (id) => {
+export const complete = (todo) => {
     return{
         type: COMPLETE,
-        payload: id, 
+        payload: todo, 
     }
 }
