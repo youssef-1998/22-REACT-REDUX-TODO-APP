@@ -1,26 +1,32 @@
-import { ADD_TO_DO } from "../actions/actionstype";
+import { ADD_TO_DO, TO_UPDATE, DELETE, RENOMMER, COMPLETE } from "../actions/actionstype";
 
-const initState = [
-    {
-        todo: "aaaa",
-        complete: false,
-    },
-    {
-        todo: "bbb",
-        complete: false,
-    },
-    {
-        todo: "cccc",
-        complete: false,
-    },
-]
+const initState = {
+    todos: [],
+    toUpdate: {}
+}
 
 const Reducer = (state = initState, action) => {
     switch (action.type) {
-        case ADD_TO_DO: state.concat(action.payload)
-        default: return state;
+        case ADD_TO_DO:
+            return {
+                ...state,
+                todos: state.todos.concat(action.payload)
+                }
+        case DELETE:
+            return {
+                ...state,
+                todos: state.todos.filter(el => el.id !== action.payload)
+            }
+        case RENOMMER:
+            return {
+                ...state,
+                todos: state.todos.map(el => el.id === action.payload.id ? action.payload : el )
+            }
+        case COMPLETE:
+            return state;    
+        default:
+            return state;
     }
-
 };
 
 export default Reducer;

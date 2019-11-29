@@ -1,23 +1,48 @@
-import React, { Component } from 'react'
-import './AddStyle.css'
+import React, { Component } from 'react';
+import './AddStyle.css';
+import { connect } from 'react-redux';
+import { add } from '../../actions/actionsTodo';
+import uuid from 'uuid';
 
 class Add extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            text: '',
+            complete: false,
+            editMode: false,
+        }
+    }
+
+    fnchangeinput = (e) => {
+        this.setState({
+            text: e.target.value
+        })
+    } 
+
+    Empty = () => {
+        this.props.addNewTodo({...this.state, id: uuid()})
+        this.setState({text: ''})
+    }
+
     render() {
         return (
-            // <div className="container">
-            // </div>
             <div class="card px-3">
                 <div class="card-body">
                     <h4 class="card-title">Daily Todo Lists</h4>
                     <div className="add-items d-flex">
-                        <input type="text" className="form-control todo-list-input" placeholder="Add your todo" />
-                        <button className="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
+                        <input onChange={this.fnchangeinput} value={this.state.text} type="text" className="form-control todo-list-input" placeholder="Add your todo" />
+                        <button onClick={this.Empty} className="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
                     </div>
                 </div>
             </div>
-
         )
     }
 }
+const mapDispatchToProps = dispatch => {
+    return{
+        addNewTodo: x => dispatch(add(x))
+    }
+}
 
-export default Add;
+export default connect(null, mapDispatchToProps)(Add);
