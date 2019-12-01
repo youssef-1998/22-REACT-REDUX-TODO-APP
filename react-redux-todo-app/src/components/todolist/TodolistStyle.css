@@ -306,7 +306,9 @@ input[type="checkbox"] {
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 100%;
-    white-space: nowrap
+    white-space: nowrap;
+    height: 19px;
+
 }
 
 .form-check .form-check-label input[type="checkbox"]+.input-helper:before {

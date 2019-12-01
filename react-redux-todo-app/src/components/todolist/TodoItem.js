@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './TodoItemStyle.css';
 import { remove, renommer, complete } from '../../actions/actionsTodo';
 import { connect } from 'react-redux'
 
